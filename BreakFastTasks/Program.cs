@@ -6,10 +6,10 @@ namespace BreakFastTasks
     {
         static void Main(string[] args)
         {
-             SimpleBreakfast.MakeBreakfastDemo_1();
-            
-           
-          
+            //SimpleBreakfast.MakeBreakfastDemo_1();
+            SimpleBreakfast.BreakFastDemo_2();
+
+
         }
     }
 }

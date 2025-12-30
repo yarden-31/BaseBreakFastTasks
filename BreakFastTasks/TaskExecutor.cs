@@ -8,16 +8,20 @@ namespace BreakFastTasks
 {
     class TaskExecutor
     {
-        #region תכונות
+        // תכונות
         private string name;
         private int timeInMiliSec;
-        #endregion
 
-        #region Properties
+        //-----------------------------------------------------------
+
+        // properties
         public string Name { get { return this.name; } }
-        #endregion
 
-       
+        //-----------------------------------------------------------
+
+        public event EventHandler<int> OnProgress;
+
+        //-----------------------------------------------------------
 
         //בנאי
         public TaskExecutor(string name, int ms)
@@ -26,22 +30,26 @@ namespace BreakFastTasks
             this.name = name;
         }
 
-      
-       
-        
+        //-----------------------------------------------------------
+
         //מחקה זמן ביצוע פעולה
         public void Start()
         {
             for (int i = 1; i <= 10; i++)
             {
+                
                 Thread.Sleep(this.timeInMiliSec / 10);
+                if (OnProgress != null)
+                {
+                    OnProgress(this, i * 10);
+                }
 
             }
            
         }
-
-
     }
+
+    //---------------------------------------------------------------
 
     class Omlette : TaskExecutor
     {
@@ -51,11 +59,15 @@ namespace BreakFastTasks
         }
     }
 
+    //---------------------------------------------------------------
+
     class Cucumber : TaskExecutor
     {
         public Cucumber(string name) : base(name, 5000)
         { }
     }
+
+    //---------------------------------------------------------------
 
     class Tomato : TaskExecutor
     {
@@ -63,9 +75,11 @@ namespace BreakFastTasks
         { }
     }
 
+    //---------------------------------------------------------------
+
     class Toast : TaskExecutor
     {
-        public Toast(string name) : base(name, 7000)
+        public Toast(string name) : base(name, 6000)
         {
 
         }
